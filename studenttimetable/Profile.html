@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Profile</title>
+<style>
+body {
+    font-family: 'Franklin Gothic Medium', Arial, sans-serif;
+    background: linear-gradient(to right,#4e54c8,#8f94fb);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.profile-container {
+    background:white;
+    padding:30px;
+    border-radius:10px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.3);
+    width:400px;
+    text-align:center;
+}
+
+.profile-container img {
+    width:120px;
+    height:120px;
+    border-radius:50%;
+    margin-bottom: 20px;
+    border: 3px solid #4e54c8;
+}
+
+.profile-container h2 {
+    margin:0;
+    margin-bottom: 20px;
+}
+
+.profile-container div {
+    margin:10px 0;
+    text-align:left;
+}
+
+.profile-container label {
+    font-weight:bold;
+    display:inline-block;
+    width:150px;
+}
+
+.back-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #4e54c8;
+    color: white;
+    border: none;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+.back-button:hover {
+    background-color: #3b40a4;
+}
+</style>
+</head>
+<body>
+
+<div class="profile-container">
+    <img src="avatar.png" alt="Profile Picture">
+    <h2>My Profile</h2>
+
+    <div><label>First Name:</label> <span id="displayFname"></span></div>
+    <div><label>Pet Name:</label> <span id="displayPetname"></span></div>
+    <div><label>Class:</label> <span id="displayClass"></span></div>
+    <div><label>Phone Number:</label> <span id="displayPhone"></span></div>
+    <div><label>Email:</label> <span id="displayEmail"></span></div>
+    <div><label>Days Studied:</label> <span id="displayDays"></span></div>
+    <button class="back-button" onclick="editProfile()">Edit Profile</button>
+    <button class="back-button" onclick="deleteProfile()">Delete Profile</button>
+
+    <button class="back-button" onclick="goBack()">Back</button>
+</div>
+<script>
+window.onload = function () {
+    const profile = JSON.parse(localStorage.getItem("userData"));
+    const studies = JSON.parse(localStorage.getItem("studyList")) || [];
+
+    if (profile) {
+        document.getElementById("displayFname").innerText = profile.firstName;
+        document.getElementById("displayPetname").innerText = profile.petName;
+        document.getElementById("displayClass").innerText = profile.classStudying;
+        document.getElementById("displayPhone").innerText = profile.phoneNumber;
+        document.getElementById("displayEmail").innerText = profile.emailId;
+        document.getElementById("displayDays").innerText = studies.length;
+    } else {
+        alert("No profile data found. Please sign up first!");
+        window.location.href = "signup.html";
+    }
+};
+function editProfile() {
+    let profile = JSON.parse(localStorage.getItem("userData"));
+
+    profile.firstName = prompt("Edit First Name:", profile.firstName);
+    profile.petName = prompt("Edit Pet Name:", profile.petName);
+    profile.classStudying = prompt("Edit Class:", profile.classStudying);
+    profile.phoneNumber = prompt("Edit Phone:", profile.phoneNumber);
+    profile.emailId = prompt("Edit Email:", profile.emailId);
+
+    localStorage.setItem("userData", JSON.stringify(profile));
+    alert("Profile updated successfully!");
+    location.reload();
+}
+
+
+function deleteProfile() {
+    if (confirm("Are you sure you want to delete profile and all study data?")) {
+        localStorage.removeItem("userData");
+        localStorage.removeItem("studyList");
+        alert("Profile deleted successfully!");
+        window.location.href = "signup.html";
+    }
+}
+function goBack() {
+    window.location.href = "signup.html";
+}
+</script>

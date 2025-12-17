@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+<img src="avatar.png" alt="Profile Logo" class="profile-logo" onclick="goToProfile()"><div class="signup-box">
+    <h2>Sign Up</h2>
+    <input type="text" placeholder="First Name" id="fname">
+    <input type="text" placeholder="Pet Name" id="petname">
+    <input type="text" placeholder="Class you are studying" id="classname">
+    <input type="tel" placeholder="Phone Number" id="phone">
+    <input type="email" placeholder="Email" id="email">
+    <button onclick="validateForm()">Sign Up</button>
+    <div id="errorMsg"></div>
+</div>
+<div id="profile-container"></div>
+<script>
+function validateForm() {
+    let fname = document.getElementById("fname").value;
+    let petname = document.getElementById("petname").value;
+    let classname = document.getElementById("classname").value;
+    let phone = document.getElementById("phone").value;
+    let email = document.getElementById("email").value;
+    let errorMsg = document.getElementById("errorMsg");
+    if (fname === "" || petname === "" || classname === "" || phone === "" || email === "") {
+        errorMsg.style.color = "red";
+        errorMsg.innerHTML = " Please fill all the fields!";
+        return;
+    }
+     let userData = {
+        firstName: fname,
+        petName: petname,
+        classStudying: classname,
+        phoneNumber: phone,
+        emailId: email
+    };
+    localStorage.setItem("userData", JSON.stringify(userData));
+    errorMsg.style.color = "green";
+    errorMsg.innerHTML = "Thank you for signing up!";
+    setTimeout(() => {
+        window.location.href = "creattimetable.html";
+    }, 1000);
+}
+function goToProfile() {
+    if (localStorage.getItem("userData")) {
+        window.location.href = "profile.html";
+    } else {
+        alert("Please sign up first!");
+    }
+}
+</script>
+</body>
+</html>

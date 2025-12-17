@@ -1,0 +1,63 @@
+body{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background: -moz-linear-gradient(blue,purple);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    }
+ .signup-box{
+    background: white;
+    padding: 35px;
+    width: 320px;
+    border-radius:5px;
+    box-shadow: 1,10px,25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+h2{
+    text-align: center;
+    margin-bottom: 30px;
+    margin-right: 10px;
+}
+input{
+    width: 100%;
+    padding: 10px;
+    margin:8px 0;
+    margin-right: 5px;
+    border:1px solid #ccc;
+    border-radius: 5px;;
+}
+button{
+    height: 40px;
+    width:107%;
+    padding: 10px;
+    background-color: blue;
+    color: rgb(0, 6, 12);
+    align-content: center;
+    justify-content: center;
+    border: none;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.profile-logo {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid white;
+}
+.signup-box button:hover {
+            background:-moz-linear-gradient(blue purple);
+        }
+ .error {
+            color: red;
+            font-size: 14px;
+            text-align: center;
+            margin-top: 10px;
+        }
